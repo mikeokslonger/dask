@@ -30,7 +30,7 @@ def unzip(ls, nout):
 
 def to_task_dask(expr):
     if isinstance(expr, Delayed):
-        return expr.key, expr.dask
+        return {'s3_bucket': 'mikeokslonger-dask', 's3_key': expr.key, 'read_me': True}, expr.dask
 
     if is_dask_collection(expr):
         name = 'finalize-' + tokenize(expr, pure=True)
